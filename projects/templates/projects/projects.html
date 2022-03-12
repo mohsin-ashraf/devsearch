@@ -3,6 +3,11 @@
 {% block content %}
 <h1>This is the content of the Projects</h1>
 {% for project in projects %}
-    <li>Title: <a href="{% url 'project' project.id %}">{{project.title}}</a> --- {{project.description}}</li>
+    <li>
+        Title: <a href="{% url 'project' project.id %}">{{project.title}}</a> --- 
+        {{project.description}} --- 
+        <a href="{% url 'update-project' project.id %}"> Update</a>
+        <a href="{% url 'delete-project' project.id %}">Delete</a>
+    </li>
 {% endfor %}
 {% endblock content %}
