@@ -1,12 +1,14 @@
 from email.policy import default
 from django.db import models
 import uuid
+from users.models import Profile
 
 # Create your models here.
 class Project(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
+    owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.SET_NULL)
     featured_image = models.ImageField(null=True, blank=True, default='default.jpg')
     demo_link = models.CharField(max_length=2000, null=True, blank=True)
     source_link = models.CharField(max_length=2000, null=True, blank=True)
